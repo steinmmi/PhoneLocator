@@ -1,9 +1,16 @@
 import tornado.ioloop
 import tornado.web
 
+longitude = 0
+latitude = 0
+
 class IndexHandler(tornado.web.RequestHandler):
     def get(self):
-        self.write("Hello, world")
+        if(len(self.request.arguments) == 2):
+            longitude = self.get_arguments('lo')[0]
+            latitude = self.get_arguments('la')[0]
+        else:
+            self.write("Hello, world")
 
 def make_app():
     return tornado.web.Application([
