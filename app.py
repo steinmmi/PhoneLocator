@@ -13,7 +13,7 @@ class IndexHandler(tornado.web.RequestHandler):
             longitude = self.get_arguments('lo')[0]
             latitude = self.get_arguments('la')[0]
         else:
-            self.render("index.html",longitude=longitude,latitude=latitude)
+            self.redirect('https://www.google.com/maps/search/'+str(latitude)+'+'+str(longitude))
 
 def make_app():
     return tornado.web.Application([
