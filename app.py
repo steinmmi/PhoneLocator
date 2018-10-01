@@ -5,12 +5,15 @@ longitude = 0
 latitude = 0
 
 class IndexHandler(tornado.web.RequestHandler):
+
     def get(self):
         if(len(self.request.arguments) == 2):
+            global longitude
+            global latitude
             longitude = self.get_arguments('lo')[0]
             latitude = self.get_arguments('la')[0]
         else:
-            self.write("Hello, world")
+            self.render("index.html",longitude=longitude,latitude=latitude)
 
 def make_app():
     return tornado.web.Application([
